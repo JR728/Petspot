@@ -1,11 +1,5 @@
 const router = require('express').Router();
 
-// Have yet to write the 'User' model (as of 9/20/23):
-// const { User } = require('../models');
-
-// Have yet to write the 'withAuth' function (as of 9/20/23):
-// const withAuth = require('../utils/auth');
-
 router.get('/', withAuth, async (req, res) => {
     try {
         const userData = await User.findAll({
