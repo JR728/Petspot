@@ -1,11 +1,11 @@
-const  { model, DataType, DataTypes } = require('sequelize');
-const bcrypt = require ('bcrypt');
+const  { Model, DataTypes } = require('sequelize');
+// const bcrypt = require ('bcrypt');
 const sequelize = require('../config/connection');
 
 class User extends Model {
-    checkoutPassword(loginPw) {
-        return bcrypt.compareSync(loginPw, this.password);
-    }
+    // checkoutPassword(loginPw) {
+    //     return bcrypt.compareSync(loginPw, this.password);
+    // }
 }
 
 User.init(
@@ -16,18 +16,18 @@ User.init(
             primaryKey: true,
             autoIncrement: true, 
         },
-        name: {
+        username: { // Changed this from 'name' to 'username' to match login page.
             type: DataTypes.STRING,
             allowNull: false, 
         },
-        email: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true,
-            validate: {
-                isEmail: true,
-            },
-        },
+        // email: { // Removed 'email' since login page just has 'uername' and 'password.'
+        //     type: DataTypes.STRING,
+        //     allowNull: false,
+        //     unique: true,
+        //     validate: {
+        //         isEmail: true,
+        //     },
+        // },
         password: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -35,20 +35,18 @@ User.init(
                 len: [8],
             },
         },
-
-
     },
     {
-        hooks: {
-            beforeCreate: async (newUserData) => {
-                newUserData.password = await bcrypt.hash(newUserData.password, 10)
-                return newUserData;
-            },
-        },
+        // hooks: {
+        //     beforeCreate: async (newUserData) => {
+        //         newUserData.password = await bcrypt.hash(newUserData.password, 10)
+        //         return newUserData;
+        //     },
+        // },
         sequelize,
-        timestamps: false,
-        freeezeTableName: true,
-        underscored: true,
+        // timestamps: false,
+        // freeezeTableName: true,
+        // underscored: true,
         modelName: 'user',
     }
 );
