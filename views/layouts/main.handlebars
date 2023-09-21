@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="./public/.css">
+</head>
+<body>
+    <h1>tets</h1>
+    <div class="login-container">
+        <div class="logo">
+            <img src="{{ logoSrc }}" alt="Your Logo">
+        </div>
+        <input class="login-input" type="text" placeholder="Username" id="username">
+        <input class="login-input" type="password" placeholder="Password" id="password">
+        <button class="login-button" onclick="createUser()">Create</button> 
+        <button class="login-button" onclick="loginUser()">Login</button>
+    </div>
+    <script src="./public/js/login.js"></script>
+
+</body>
+</html>
