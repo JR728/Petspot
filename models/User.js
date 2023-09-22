@@ -35,8 +35,6 @@ User.init(
                 len: [8],
             },
         },
-
-
     },
     {
         hooks: {
@@ -47,7 +45,7 @@ User.init(
         },
         sequelize,
         timestamps: false,
-        freeezeTableName: true,
+        freezeTableName: true,
         underscored: true,
         modelName: 'user',
     }
