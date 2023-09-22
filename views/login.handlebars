@@ -11,10 +11,13 @@
         <div class="logo">
             <img src="{{ logoSrc }}" alt="Your Logo">
         </div>
+        <form>
         <input class="login-input" type="text" placeholder="Username" id="username">
         <input class="login-input" type="password" placeholder="Password" id="password">
-        <button class="login-button" onclick="createUser()">Create</button> 
-        <button class="login-button" onclick="loginUser()">Login</button>
+        <input type="email" id="email" placeholder="JohnDoe@email.com">
+        <button type="submit" id="create" class="login-button" >Create</button> 
+        <button type="submit" id="login" class="login-button" >Login</button>
+        </form>
     </div>
 </body>
 </html>
