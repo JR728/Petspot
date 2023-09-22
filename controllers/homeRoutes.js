@@ -1,42 +1,55 @@
 const router = require('express').Router();
+const sequelize = require('../config/connection'); // Is this line needed if 'sequelize' is never read?
+const { Post, User } = require('../models');
 
- router.get('/', withAuth, async (req, res) => {
-     try {
-         const userData = await User.findAll({
-             attributes: { exclude: ['password'] },
-             order: [['name', 'ASC']], // Not sure what this line does or if it is needed.
-         });
+// Route is meant to show all of the posts on the homepage:
+router.get('/', async (req, res) => {
+  try {
+    const dbPostData = await Post.findAll({
+      attributes: [
+        'id',
+        'title',
+        'created_at',
+        'post_content'
+      ],
+      include: [
+        {
+          model: User,
+          attributes: ['name']
+        }
+      ]
+    });
+    const posts = dbPostData.map(post => post.get({ plain: true }));
 
-         const users = userData.map((project) => project.get({ plain: true }));
-
-         res.render('homepage', {
-             users,
-             logged_in: req.session.logged_in,
-         });
-     } catch (err) {
-         res.status(500).json(err);
-    }
+    res.render('homepage', {
+      posts,
+      loggedIn: req.session.loggedIn
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err)
+  }
 });
 
 router.get('/login', (req, res) => {
-    if (req.session.logged_in) {
-        res.redirect('/');
-        return;
-    }
-
-    res.render('login');
-});
-router.get('/',(req, res) => {
-    res.render('main');
-});
-
-router.get('/create', (req, res) => {
-    if (req.session.loggedIn) {
+  // If the user goes to the '/login' route but is already logged in, the user is redirected to the homepage:
+  if (req.session.loggedIn) {
       res.redirect('/');
       return;
-    }
-  
-    res.render('create');
-  });
+  }
+  // If the user is not logged in, the user is sent to the login page. Should it be '/login' (like the route) or 'login' (like 'login.handlebars')?
+  res.render('/login');
+});
+
+// Will need to create 'signup.handlebars'?
+router.get('/signup', (req, res) => { 
+  // If the user goes to the '/signup' route but is already logged in, the user is redirected to the homepage:
+  if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+  }
+  // If the user is not logged in, the user is sent to the login page. Should it be '/login' (like the route) or 'login' (like 'login.handlebars')?
+  res.render('/login');
+});
 
 module.exports = router;
