@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-// Have yet to write the 'User' model (as of 9/20/23):
+
 // const { User } = require('../..models');
 
 router.post('/login', async (req, res) => {
