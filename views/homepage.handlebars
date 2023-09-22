@@ -1,0 +1,99 @@
+{{!-- Login Landing Page --}}
+<div id="main-container" class="container">
+  <div class="jumbotron text-center header-wrap" align="center">
+    <img src="project-2/assets /pet spot.png" alt="logo" class="img-fluid" id="dash-logo">
+    <p class="lead">Welcome to <strong>Pet Spot </strong></p>
+    <hr class="my-4">
+    <div>
+      {{#if isloggedin}}
+      You are logged in as {{user.firstName}}
+      <div id="dashButtons">
+        <a href="/example"><br><br><button type="btn" class="btn btn-outline-light btn-space">Home</button> </a>
+        <a href="/logout"><br><br><button type="btn" class="btn btn-outline-light btn-space">Logout</button> </a>
+      </div>
+      {{else}}
+      <p>Please log in to use this app.</p>
+      {{/if}}
+      <h5 id="login-err-msg"></h5>
+    </div>
+  </div>
+</div>
+
+{{> modal/login-block}}
+
+<div id="home">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4"> 
+        <div id="profile-card" class="card">
+          <div class="card-body text-center">
+            <h3 class="card-title">{{userInfo.firstName}}'s Profile</h3>
+            <h5 class="card-subtitle mb-2 text-muted">About Me</h5>
+            <p class="card-text" id="About">{{userInfo.aboutMe}}</p>
+            <a class="btn btn-light border border-dark profileButton" href="/profile">Update My Profile</a>
+          </div>
+        </div>
+
+        <div class="card border-primary mb-3 p-3">
+          <div class="card-body text-center">
+            <h4 class="card-title">My Posts</h4>
+            </div>
+          <div id="list-example" class="list-group">
+              <ul id="example-list" class="list-group">
+                {{#each myExamples}}
+                <li data-id="{{this.id}}" class="list-group-item">
+                  <a href="example/{{this.id}}">{{this.name}}</a>
+                  <button class="btn btn-outline-danger float-right delete">ｘ</button>
+                </li>
+                {{/each}}
+              </ul>
+          </div>
+        </div>
+        <div class="card border-primary mb-3 p-3">
+          <div class="card-body text-center">
+            <h4 class="card-title">My Playdates</h4>
+            </div>
+          <div id="list-example" class="list-group">
+             <ul id="example-list" class="list-group">
+                {{#each examples}}
+                  {{#if this.value}}
+                    <li data-id="{{this.id}}" class="list-group-item">
+                      <a href="example/{{this.id}}">{{this.name}}</a>
+                      <button class="btn btn-outline-warning float-right eventButton minusButton" data-value={{this.value}} data-id="{{this.id}}">-</button>
+                    </li>
+                  {{/if}}
+                {{/each}}
+              </ul>
+          </div>
+        </div>
+
+       <div class="card">
+          <div class="card-body text-center">
+            <h4 class="card-title">Create A New Post</h4>
+            {{> modal/bootstrap-modal}}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        {{#each examples}}
+            <div class="card event-card">
+              <div class="card-body">
+                <h1 class="card-title eventTitle text-center"><span>{{this.name}}</span></h1>
+                <img src="{{this.picture}}" class="card-img-top" alt="{{this.name}} Logo/Picture">
+              </div>
+              <div class="card-body">
+                  <button class="btn btn-light border border-dark eventButton" data-value={{this.value}} data-id="{{this.id}}">
+                    {{#if value}}
+                    You're Attending!
+                    {{else}}
+                    Click to Attend!
+                    {{/if}}
+                  </button>
+                 </div>
+            </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>
