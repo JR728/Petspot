@@ -1,0 +1,17 @@
+[
+    {
+        "username": "Mickey",
+        "email": "9lives@hotmail.com",
+        "password": "kittyfood"
+    },
+    {
+        "username": "Toucan Sam",
+        "email": "longbeak@gmail.com",
+        "password": "cereal"
+    },
+    {
+        "username": "Tony the Tiger",
+        "email": "theyaregreat@yahoo.com",
+        "password": "frostedflakes"
+    }
+]

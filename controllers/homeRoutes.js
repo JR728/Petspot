@@ -1,8 +1,6 @@
 const router = require('express').Router();
-const sequelize = require('../config/connection'); // Is this line needed if 'sequelize' is never read?
 const { Post, User } = require('../models');
 
-// Route is meant to show all of the posts on the homepage:
 router.get('/', async (req, res) => {
   try {
     const dbPostData = await Post.findAll({
@@ -21,35 +19,35 @@ router.get('/', async (req, res) => {
     });
     const posts = dbPostData.map(post => post.get({ plain: true }));
 
+    // Check if the user is not logged in, and if so, redirect to the login page
+    if (!req.session.loggedIn) {
+      return res.redirect('/login');
+    }
+
     res.render('homepage', {
       posts,
       loggedIn: req.session.loggedIn
     });
   } catch (err) {
     console.log(err);
-    res.status(500).json(err)
+    res.status(500).json(err);
   }
 });
 
 router.get('/login', (req, res) => {
-  // If the user goes to the '/login' route but is already logged in, the user is redirected to the homepage:
+  // If the user goes to the '/login' route but is already logged in, redirect to the homepage
   if (req.session.loggedIn) {
-      res.redirect('/');
-      return;
+    return res.redirect('/');
   }
-  // If the user is not logged in, the user is sent to the login page. Should it be '/login' (like the route) or 'login' (like 'login.handlebars')?
-  res.render('/login');
+  res.render('login');
 });
 
-// Will need to create 'signup.handlebars'?
 router.get('/signup', (req, res) => { 
-  // If the user goes to the '/signup' route but is already logged in, the user is redirected to the homepage:
+  // If the user goes to the '/signup' route but is already logged in, redirect to the homepage
   if (req.session.loggedIn) {
-      res.redirect('/');
-      return;
+    return res.redirect('/');
   }
-  // If the user is not logged in, the user is sent to the login page. Should it be '/login' (like the route) or 'login' (like 'login.handlebars')?
-  res.render('/login');
+  res.render('signup'); // You can create a signup.handlebars for this route
 });
 
 module.exports = router;
