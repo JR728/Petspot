@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Post, User } = require('../models');
+// const withAuth = require('../utils/auth'); Is this needed as part of router.get to homepage ('/')?
 
 router.get('/', async (req, res) => {
   try {
@@ -13,13 +14,14 @@ router.get('/', async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ['name']
+          attributes: ['username']
         }
       ]
     });
+    
     const posts = dbPostData.map(post => post.get({ plain: true }));
 
-    // Check if the user is not logged in, and if so, redirect to the login page
+    // Check if the user is not logged in, and if so, redirect to the login page:
     if (!req.session.loggedIn) {
       return res.redirect('/login');
     }
@@ -28,6 +30,7 @@ router.get('/', async (req, res) => {
       posts,
       loggedIn: req.session.loggedIn
     });
+    
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
