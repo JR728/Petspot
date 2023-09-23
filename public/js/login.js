@@ -7,12 +7,14 @@ document.addEventListener('DOMContentLoaded', function () {
         // Gather the data from the form elements on the page
         const username = document.querySelector('#username').value.trim();
         const password = document.querySelector('#password').value.trim();
+        // Does there need to be a 3rd variable for 'email'?
+        const email = document.querySelector('#email').value.trim();
 
-        if (username && password) {
+        if (username && password && email) {
             // Send the username and password to the server for login
             const response = await fetch('/api/users/login', {
                 method: 'POST',
-                body: JSON.stringify({ username, password }),
+                body: JSON.stringify({ username, password, email }),
                 headers: { 'Content-Type': 'application/json' },
             });
 
