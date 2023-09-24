@@ -1,25 +1,65 @@
-{{!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="./public/.css">
-</head> --}}
-<body>
-    <div class="login-container">
-        <div class="logo">
-            <img src="{{ logoSrc }}" alt="Your Logo">
-        </div>
-        <form>
-        <input class="login-input" type="text" placeholder="username" id="username">
-        <input class="login-input" type="password" placeholder="password" id="password">
-        <input type="email" id="email" placeholder="JohnDoe@email.com">
-        <button type="submit" id="create" class="login-button" >Create</button> 
-        <button type="submit" id="login" class="login-button" >Login</button>
+{{! Login/Signup page: }}
+
+<div class="login-container">
+
+    <div class="logo">
+        <img src="{{ logoSrc }}" alt="Your Logo">
+    </div>
+
+    <h2>Login</h2> {{! Login only needs username and password: }}
+    <form class="login-form">
+        <input class="login-input" type="text" placeholder="username" id="username-login" >
+        <input class="login-input" type="password" placeholder="password" id="password-login">
+        <button class="login-button" type="submit" id="button-login">Login</button>
+    </form>
+
+    <h2>Signup</h2> {{! Signup needs username, password, and email: }}
+    <form class="signup-form">
+        <input class="signup-input" type="text" placeholder="username" id="username-signup">
+        <input class="signup-input" type="password" placeholder="password" id="password-signup">
+        <input class="signup-input" type="text" placeholder="email" id="email-signup">
+        <button class="create-button" type="submit" id="button-create">Create</button>
+    </form>
+
+</div>
+
+<script src="/js/login.js"></script>
+
+
+
+
+
+{{!-- <section class="login-page">
+
+    <div class="form-heading">
+        <h1>Log In</h1>
+    </div>
+
+    <div class="form-section">
+        <form class="login-form">
+
+            <div>
+                <label for="username-login">Username</label>
+                <input type="text" class="entry-field" id="username" />
+            </div>
+
+            <div>
+                <label for="password-login">Password</label>
+                <input type="text" class="entry-field" id="password" />
+            </div>
+
+            <div>
+                <label for="email-address">Email</label>
+                <input type="text" class="entry-field" id="email" />
+            </div>
+
+            <div>
+                <button type="submit" class="login-signup-btn">Log In</button>
+            </div>
         </form>
     </div>
-    <script src="/public/js/login.js"></script>
 
-</body>
-{{!-- </html> --}}
+    {{!-- <a href="/signup" class="sign-in-link">Sign Up</a> --}}
+</section>
+
+<script src="/js/login.js"></script> --}}
