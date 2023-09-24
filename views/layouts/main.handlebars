@@ -1,24 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link rel="stylesheet" href="./public/.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
+
+<header>
+    <h1>Pet Spot</h1>
+    <nav>
+        {{#if loggedIn}}
+        <a href="/" class="navbar-item">Homepage</a>
+        <a href="/dashboard" class="navbar-item">Dashboard</a>
+        <a href="/dashboard/create" class="navbar-item">Create Post</a>
+        <button id="logout" class="button">Logout</button>
+        {{else}}
+        <a href="/" class="navbar-item">Homepage</a>
+        <a href="/login" class="button">Login</a>
+        {{/if}}
+    </nav>
+</header>
+
 <body>
 
-{{{body}}}
-    <h1>Pet Spot</h1>
-<div class="Navbar-container">
+    {{{body}}}
+
+</body>
+
+</html>
+    
+    
+    {{!-- <div class="Navbar-container">
         <div class="navbar">
         </div>
-        <button class="Profile-button" onclick="profile()">Profile</button> 
+        <button class="Profile-button" onclick="profile()">Profile</button>
         <button class="Home-button" onclick="home()">Home</button>
         <button class="Events" onclick="events()">Events</button>
 
-    </div>
-    <script src="/js/login.js"></script>
+    </div> --}}
+    {{!-- <script src="/js/login.js"></script> 'main.handlebars' doesn't seem to need a script tag. --}}
 
-</body>
-</html>
