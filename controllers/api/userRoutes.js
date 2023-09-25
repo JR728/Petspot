@@ -8,7 +8,6 @@ router.post('/login', async (req, res) => {
     const userData = await User.findOne({ where: { username: req.body.username } });
 
     if (!userData) {
-      console.log('No user found.');
       res.status(400).json({ message: 'Incorrect email or password' });
       return;
     }
@@ -16,14 +15,13 @@ router.post('/login', async (req, res) => {
     const validPassword = userData.checkPassword(req.body.password);
 
     if (!validPassword) {
-      console.log('No password match.');
       res.status(400).json({ message: 'Incorrect email or password' });
       return;
     }
 
     req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
+      req.session.userId = userData.id;
+      req.session.loggedIn = true;
 
       res.json({ user: userData, message: 'Login successful.' });
     });
@@ -34,35 +32,45 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Route to handle user registration
-// router.post('/register', async (req, res) => {
-//   try {
-//     const userData = await User.create({
-//       username: req.body.username,
-//       email: req.body.email,
-//       password: req.body.password,
-//     });
+// Route to handle user signup. Posts new username, password, and email to database:
+router.post('/signup', async (req, res) => {
+  try {
+    // Validate new user input. Checks that user entered all 3 required fields:
+    const { username, password, email } = req.body;
+    if (!username || !password || !email) {
+      return res.status(400).json({ message: 'Please provide username, password, and email' });
+    }
+    // Checks that email doesn't already exist in databse:
+    const existingUser = await User.findOne({ where: { email:req.body.email }});
+    if (existingUser) {
+      return res.status(400).json({ message: 'User with this email already exists.' });
+    }
 
-// You can handle user sessions or other logic here if needed
+    const userData = await User.create({ username, password, email });
 
-//     res.status(200).json(userData);
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
+    req.session.save(() => {
+      req.session.userId = userData.id;
+      req.session.loggedIn = true;
 
+      res.json({ user: userData, message: 'New user successfully added.' });
+    });
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: 'Internal server error.' });
+  }
+});
+
+module.exports = router;
 
 
 // Route to handle user logout (if needed)
-// router.post('/logout', (req, res) => {
-//   if (req.session.loggedIn) {
-//     req.session.destroy(() => {
-//       res.status(204).end();
-//     });
-//   } else {
-//     res.status(404).end();
-//   }
-// });
-
-module.exports = router;
+router.post('/logout', (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
+});
