@@ -1,3 +1,4 @@
+
 {{#each posts as |post|}}
 
 {{> post-info post }}
@@ -6,3 +7,22 @@
 {{else}}
 <h6 class="post">There are no posts right now.</h6>
 {{/each}}
+
+
+<div class="text-center">
+    <h3>Comments</h3>
+    {{#each comments as |comment|}}
+    <div>
+      <p>{{comment.comment_body}} by {{comment.user.name}}</p>
+      {{/each}}
+  </div>
+  {{ > comment-form }}
+  {{! still figuring out how to connect the comment form}}
+  
+  <div>
+  {{#each Posts as |Post|}}
+    <h2>{{post.id}}</h2>
+  {{/each}}  
+
+</div>
+
