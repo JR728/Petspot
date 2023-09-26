@@ -32,4 +32,37 @@ router.get('/', withAuth, (req, res) => {
     });
 });
 
+router.get('/create/', withAuth, (req, res) => {
+    Post.findAll({
+        where: {
+            user_id: req.session.userId
+        },
+        attributes: [
+            'id',
+            'title',
+            'created_at',
+            'post_content'
+        ],
+        include: [
+            {
+                model: User,
+                attributes: ['username']
+            }
+        ]
+    })
+    .then(dbPostData => {
+        const posts = dbPostData.map(post => post.get({ plain: true }));
+        res.render('dashboard', { posts, loggedIn: true });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
+router.get('/create-post', (req, res) => {
+    res.render('createpost.handlebars');
+  });
+
+
 module.exports = router;
