@@ -1,15 +1,18 @@
 [
     {
+        "id": 1,
         "username": "Mickey",
         "email": "9lives@hotmail.com",
         "password": "kittyfood"
     },
     {
+        "id": 2,
         "username": "Toucan Sam",
         "email": "longbeak@gmail.com",
         "password": "cereal"
     },
     {
+        "id": 3,
         "username": "Tony the Tiger",
         "email": "theyaregreat@yahoo.com",
         "password": "frostedflakes"
