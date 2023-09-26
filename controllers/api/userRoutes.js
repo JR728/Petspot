@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../../models');
+const { sendEmail } = require('../../utils/emailSender.js');
+
 
 // Route to handle user login:
 router.post('/login', async (req, res) => {
@@ -48,12 +50,22 @@ router.post('/signup', async (req, res) => {
 
     const userData = await User.create({ username, password, email });
 
-    req.session.save(() => {
-      req.session.userId = userData.id;
-      req.session.loggedIn = true;
+    // Send a confirmation email here:
+    const subject = 'Welcome to Your App'; // Email subject
+    const text = 'Thank you for signing up!'; // Email content
+    sendEmail(email, subject, text); // Send the confirmation email
 
-      res.json({ user: userData, message: 'New user successfully added.' });
-    });
+    if (emailResult.success) {
+        req.session.save(() => {
+          req.session.userId = userData.id;
+          req.session.loggedIn = true;
+  
+          res.json({ user: userData, message: 'New user successfully added.' });
+        });
+    } else {
+        res.status(500).json({ message: 'Failed to send confirmation email.' });
+    }
+
 
   } catch (err) {
     console.log(err);
