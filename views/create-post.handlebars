@@ -1,0 +1,24 @@
+<section>
+
+  {{!-- <a href="/dashboard" class="nav"> &larr; Back to Dashboard</a> Not needed. This is in dashboard.handlebars --}}
+  <h2 class="title">Create New Post</h2>
+  <hr>
+
+  <form class="new-post-form">
+
+    <div>
+      <label for="post-title">Title:</label>
+      <input class="title-input" type="text" placeholder="Insert post title here" id="post-title" />
+    </div>
+
+    <div>
+      <label for="post-content">Content:</label>
+      <textarea rows="4" cols="50" placeholder="Write post here" id="post-content"></textarea>
+    </div>
+
+    <button type="submit" class="button">Create post</button>
+
+  </form>
+</section>
+
+<script src="/js/createPost.js"></script>

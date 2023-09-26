@@ -25,11 +25,12 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/create', (req, res) => {
+    
     Post.create({
       title: req.body.title,
-      post_content: req.body.post_content,
-      user_id: req.session.user_id
+      post_content: req.body.postContent,
+      user_id: req.session.userId
     })
       .then(dbPostData => res.json(dbPostData))
       .catch(err => {
