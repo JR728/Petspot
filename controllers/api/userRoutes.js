@@ -73,7 +73,7 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-// Route to handle user logout (if needed)
+// Route to handle user logout:
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {

@@ -32,6 +32,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Configures the server to use static assets ('pet-spot.png' logo) from the 'assets' folder:
+app.use(express.static('assets'));
+
 app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
