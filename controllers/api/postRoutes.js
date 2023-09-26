@@ -3,7 +3,6 @@ const { Post, User } = require('../../models');
 
 // Could this be turned into try-catch syntax?
 router.get('/', (req, res) => {
-    console.log('=================');
     Post.findAll({
         attributes: [
             'id',
