@@ -2,7 +2,7 @@
   <header class="card-header">
     
         <div class="column">
-            <p class=" has-text-primary-light"></p>
+            <p class="has-text-primary-light is-nowrap"></p>
       <a href="/post/{{id}}"  class="title">{{title}} </a></p>
       </div>
 
@@ -13,11 +13,11 @@
   </header>
 
     <div class="card-content">
-        <div class="content">
+        <div class="is-size-4 is-nowrap">
             {{post_content}}
         </div>
             <div class="">
-                <b>{{user.username}}</b> 
+                <b class="is-size-6">{{user.username}}</b> 
                 <a href="/post/{{id}}"></a>
             </div>
         
