@@ -51,11 +51,11 @@ router.post('/signup', async (req, res) => {
     const userData = await User.create({ username, password, email });
 
     // Send a confirmation email here:
-    const subject = 'Welcome to Your App'; // Email subject
+    const subject = 'Welcome to Pet Spot'; // Email subject
     const text = 'Thank you for signing up!'; // Email content
     sendEmail(email, subject, text); // Send the confirmation email
 
-    if (emailResult.success) {
+    if (sendEmail) {
         req.session.save(() => {
           req.session.userId = userData.id;
           req.session.loggedIn = true;
