@@ -4,22 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Pet Spot</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 
-<div class="wrapper">
+<div class="main-container">
     <header>
-        <h1>Pet Spot</h1>
-        <nav>
+        {{!-- <h1 class="title is-1">Pet Spot</h1> Should this title be removed since there is the logo? --}}
+        <nav class="navbar">
             {{#if loggedIn}}
-            <a href="/" class="navbar-item">Homepage</a>
-            <a href="/dashboard" class="navbar-item">Dashboard</a>
-            <a href="/dashboard/create" class="navbar-item">Write New Post</a>
-            <button id="logout" class="button">Logout</button> {{!-- Button should be spaced out to the right. --}}
+            <a href="/" class="navbar-item mb-3">Homepage</a>
+            <a href="/dashboard" class="navbar-item mb-3">Dashboard</a>
+            <a href="/dashboard/create" class="navbar-item mb-3">Write New Post</a>
+            <button id="logout" class="button is-info mb-3">Logout</button> {{!-- Button should be spaced out to the right. --}}
             {{else}}
-            <a href="/" class="navbar-item">Homepage</a>
-            <a href="/login" class="button">Login</a>
+            <a href="/" class="navbar-item mb-3">Homepage</a>
+            <a href="/login" class="navbar-item mb-3">Login</a>
             {{/if}}
         </nav>
     </header>

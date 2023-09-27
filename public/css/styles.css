@@ -1,4 +1,14 @@
-body {
+.main-container {
+    position: relative;
+    z-index: 2;
+}
+
+.login-container {
+    position: relative;
+    z-index: 1;
+}
+
+/* body {
     margin: 0;
     padding: 0;
     display: flex;
@@ -59,4 +69,4 @@ body {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-}
+} */
