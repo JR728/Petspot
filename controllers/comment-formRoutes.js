@@ -1,23 +1,24 @@
 //comment-form route
+// Commented out because no time to finish it:
 
-const app = express();
+// const app = express();
 
-app.use(express.json());
+// app.use(express.json());
 
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.urlencoded({ extended: true }));
 
-app.use(require('./commentRoutes'));
+// app.use(require('./commentRoutes'));
 
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
-});
+// app.listen(3000, () => {
+//   console.log('Server is running on port 3000');
+// });
 
-// POST route to handle form submission
-router.post('./commentRoutes', (req, res) => {
+// // POST route to handle form submission
+// router.post('./commentRoutes', (req, res) => {
 
-    const { comment } = req.body;
+//     const { comment } = req.body;
   
-    res.status(200).json({ message: 'Comment submitted successfully' });
-  });
+//     res.status(200).json({ message: 'Comment submitted successfully' });
+//   });
   
-  module.exports = router;
+//   module.exports = router;
