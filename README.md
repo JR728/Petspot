@@ -58,6 +58,13 @@ https://github.com/priyaravi23/mvc-tech-blog
 
 https://petspot-083c39b70dd9.herokuapp.com/
 
-![readmepetspotpost](https://github.com/JR728/project-2/assets/134809091/bc2d2129-73fe-483e-bdd1-e7c540b83d4a)
+![image](assets/readmepetspot.PNG)
 
-![readmepetspot](https://github.com/JR728/project-2/assets/134809091/804d45ef-4c7e-4a90-b6d1-90c7e0445fe7)
+![create a post](assets/readmepetspotpost.PNG)
+
+## Acknowledgements
+
+- Justin Ramos - [JR728](https://github.com/JR728)
+- Kamilla montes - [Kamilamontes](https://github.com/kamilamontes)
+- Isaiah Waddington - [Isaiahw01](https://github.com/Isaiahw01)
+- Scott Clarke - [Scott-J-Clarke](https://github.com/Scott-J-Clarke)
